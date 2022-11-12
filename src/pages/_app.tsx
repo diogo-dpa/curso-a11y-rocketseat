@@ -1,6 +1,12 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { axeAccessibilityReporter } from "../utils/axeAccessibilityReporter";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+	useEffect(() => {
+		// Só será executado no lado do cliente
+		axeAccessibilityReporter();
+	}, []);
+	return <Component {...pageProps} />;
 }
