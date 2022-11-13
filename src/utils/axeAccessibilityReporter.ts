@@ -1,5 +1,5 @@
 export async function axeAccessibilityReporter() {
-	if (process.env.NODE_ENV === "development" && typeof window === "undefined") {
+	if (process.env.NODE_ENV === "development") {
 		const axe = await require("@axe-core/react");
 		const React = await require("react");
 		const ReactDOM = await require("react-dom");

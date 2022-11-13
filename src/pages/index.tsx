@@ -1,19 +1,37 @@
+import Head from "next/head";
 import Image from "next/image";
 import LogoImg from "../assets/logo.svg";
 import styles from "../styles/Home.module.css";
 
+/**
+ * Comentários da aula
+ * - Não é recomendado usar roles no projeto
+ * - Somente usar se não tiver tags html para o significado desejado
+ *
+ * - Article não é um landmark
+ *  - Podemos usar um header dentro do article
+ *
+ *  - Quando o link (a) não tem um conteúdo escrito, podemos utilizar o aria-label para resolver esse erro
+ *    - O leitor de tela irá ler isso
+ *  - Utilizar aria-hidden quando queremos que o leitor de tela ignore
+ *  - Podemos deixar o altText como vazio quando não fizer sentido
+ */
+
 export default function Home() {
 	return (
-		<div>
-			<div className={styles.header}>
-				<Image src={LogoImg} width={286 / 2} />
+		<>
+			<Head>
+				<title>Desenvolvendo uma web acessível | Rocketseat Blog</title>
+			</Head>
+			<header className={styles.header} role="banner">
+				<Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
 
-				<div className={styles.nav}>
-					<a href="https://github.com/diogo-dpa">
+				<nav className={styles.nav}>
+					<a href="https://github.com/diogo-dpa" aria-label="Acessar o GitHub">
 						<svg
 							stroke="currentColor"
 							fill="currentColor"
-							stroke-width="0"
+							strokeWidth="0"
 							viewBox="0 0 512 512"
 							height="28"
 							width="28"
@@ -25,31 +43,43 @@ export default function Home() {
 							/>
 						</svg>
 					</a>
-				</div>
-			</div>
+				</nav>
+			</header>
 
-			<div className={styles.content}>
-				<h2>Desenvolvendo uma web acessível</h2>
-				<h4>
-					Protocolos e diretrizes orientam o desenvolvimento de tecnologias
-					acessíveis, mas é preciso olhar para além de tudo isso
-				</h4>
-				<p>
-					Acessibilidade se tornou uma tendência no ecossistema tecnológico
-					mundial, diversas empresas passaram a adotar critérios
-				</p>
-				<p>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum."
-				</p>
+			<main>
+				<article className={styles.content}>
+					<header>
+						<h1>Desenvolvendo uma web acessível</h1>
+						<h2>
+							Protocolos e diretrizes orientam o desenvolvimento de tecnologias
+							acessíveis, mas é preciso olhar para além de tudo isso
+						</h2>
+					</header>
+					<p>
+						Acessibilidade se tornou uma tendência no ecossistema tecnológico
+						mundial, diversas empresas passaram a adotar critérios
+					</p>
+					<p>
+						&quot Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+						enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+						ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+						reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+						pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+						culpa qui officia deserunt mollit anim id est laborum.&quot
+					</p>
 
-				<h3>O que é acessibilidade, afinal?</h3>
-			</div>
-		</div>
+					<h2>O que é acessibilidade, afinal?</h2>
+				</article>
+			</main>
+
+			<footer className={styles.footer}>
+				<Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
+
+				<nav className={styles.nav} aria-label="Rodapé">
+					<a href="https://github.com/diogo-dpa">Termos de Uso</a>
+				</nav>
+			</footer>
+		</>
 	);
 }

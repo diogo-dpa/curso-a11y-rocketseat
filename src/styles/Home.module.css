@@ -18,14 +18,35 @@
 	width: 100%;
 	margin: 0 auto;
 	padding: 24px 0px;
+}
 
-	color: #555;
+.content h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
 }
 
 .content h2 {
-	margin-bottom: 20px;
+	font-size: 18px;
 }
 
 .content p {
 	margin: 20px 0px;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	max-width: 1024px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 24px 0px;
+}
+
+.footer a {
+	padding: 1rem 2rem;
+	background: #202024;
+	border-radius: 5px;
+	color: #996bff;
 }
