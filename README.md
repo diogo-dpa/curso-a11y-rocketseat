@@ -17,7 +17,7 @@ No projeto utilizou-se:
 - **ChromeVox** como extensão no Chrome para realizar leitura de tela
 - **ARIA** como documentação e suporte para implementação de acessibilidade
 
-## 🛠 Referências
+## 🔎 Referências
 
 - [ARIA Técnicas](https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA/ARIA_Techniques)
 - [ARIA Web](https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA)
