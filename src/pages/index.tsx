@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import LogoImg from "../assets/logo.svg";
 import styles from "../styles/Home.module.css";
 
@@ -15,9 +16,32 @@ import styles from "../styles/Home.module.css";
  *    - O leitor de tela irá ler isso
  *  - Utilizar aria-hidden quando queremos que o leitor de tela ignore
  *  - Podemos deixar o altText como vazio quando não fizer sentido
+ *
+ *  - Ferramenta de leitor de tela utilizada: ChromeVox
+ *
+ *  - Referência para aria:
+ *    - https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA/ARIA_Techniques
+ *    - https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA
+ *
+ *  - Lib com acessibilidade
+ *    - Radix UI
  */
 
 export default function Home() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const modalRef = useRef<HTMLDivElement>(null);
+
+	function handleModalOpen() {
+		setIsModalOpen(true);
+	}
+
+	useEffect(() => {
+		if (isModalOpen) {
+			// Força o foco no modal para o leitor de tela
+			modalRef?.current?.focus();
+		}
+	}, [isModalOpen]);
+
 	return (
 		<>
 			<Head>
@@ -77,9 +101,30 @@ export default function Home() {
 				<Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
 
 				<nav className={styles.nav} aria-label="Rodapé">
-					<a href="https://github.com/diogo-dpa">Termos de Uso</a>
+					<button
+						type="button"
+						onClick={handleModalOpen}
+						aria-controls="modal1"
+					>
+						Termos de Uso
+					</button>
 				</nav>
 			</footer>
+
+			{isModalOpen && (
+				<div
+					id="modal1"
+					ref={modalRef}
+					className={styles.modal}
+					role="dialog"
+					aria-labelledby="modal1Title"
+					aria-describedby="modal1Desc"
+					tabIndex={-1}
+				>
+					<h2 id="modal1Title">Termos de Uso</h2>
+					<p id="modal1Desc">Esses são os termos de uso</p>
+				</div>
+			)}
 		</>
 	);
 }
