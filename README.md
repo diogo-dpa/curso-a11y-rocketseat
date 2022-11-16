@@ -19,6 +19,7 @@ No projeto utilizou-se:
 
 ## 🔎 Referências
 
+- [WAI - Web Accessibility Initiative](https://www.w3.org/WAI/)
 - [ARIA Técnicas](https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA/ARIA_Techniques)
 - [ARIA Web](https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA)
 - [Chrome Vox Extension](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn)
