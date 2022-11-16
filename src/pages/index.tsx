@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import LogoImg from "../assets/logo.svg";
+import * as Dialog from "@radix-ui/react-dialog";
 import styles from "../styles/Home.module.css";
 
 /**
@@ -28,20 +28,6 @@ import styles from "../styles/Home.module.css";
  */
 
 export default function Home() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const modalRef = useRef<HTMLDivElement>(null);
-
-	function handleModalOpen() {
-		setIsModalOpen(true);
-	}
-
-	useEffect(() => {
-		if (isModalOpen) {
-			// Força o foco no modal para o leitor de tela
-			modalRef?.current?.focus();
-		}
-	}, [isModalOpen]);
-
 	return (
 		<>
 			<Head>
@@ -101,30 +87,26 @@ export default function Home() {
 				<Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
 
 				<nav className={styles.nav} aria-label="Rodapé">
-					<button
-						type="button"
-						onClick={handleModalOpen}
-						aria-controls="modal1"
-					>
-						Termos de Uso
-					</button>
+					<Dialog.Root>
+						<Dialog.Trigger asChild>
+							<button type="button">Termos de Uso</button>
+						</Dialog.Trigger>
+						<Dialog.Portal>
+							<Dialog.Overlay className={styles.overlay} />
+							<Dialog.Content className={styles.modal}>
+								<Dialog.Title>Termos de Uso</Dialog.Title>
+								<Dialog.Description>
+									Esses são os termos de uso
+								</Dialog.Description>
+								{/* asChild serve para pegar o comportamento do botão abaixo */}
+								<Dialog.Close asChild className={styles.closeModalButton}>
+									<button>Fechar</button>
+								</Dialog.Close>
+							</Dialog.Content>
+						</Dialog.Portal>
+					</Dialog.Root>
 				</nav>
 			</footer>
-
-			{isModalOpen && (
-				<div
-					id="modal1"
-					ref={modalRef}
-					className={styles.modal}
-					role="dialog"
-					aria-labelledby="modal1Title"
-					aria-describedby="modal1Desc"
-					tabIndex={-1}
-				>
-					<h2 id="modal1Title">Termos de Uso</h2>
-					<p id="modal1Desc">Esses são os termos de uso</p>
-				</div>
-			)}
 		</>
 	);
 }
